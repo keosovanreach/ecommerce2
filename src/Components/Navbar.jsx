@@ -19,7 +19,7 @@ function Navbar({ cartCount }) {
         TechStore
       </h1>
 
-      <div className="hidden md:flex items-center space-x-8">
+      <div className="hidden md:flex items-center space-x-8 font-bold font-poppins">
         <ul className="flex space-x-6 text-black">
           {menuItems.map((item) => (
             <li
