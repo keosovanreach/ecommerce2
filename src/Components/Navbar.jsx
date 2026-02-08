@@ -24,7 +24,7 @@ function Navbar({ cartCount }) {
           {menuItems.map((item) => (
             <li
               key={item.name}
-              className="cursor-pointer hover:text-blue-500 font-bold transition-transform hover:scale-110"
+              className="cursor-pointer hover:text-blue-500 transition-transform hover:scale-110"
             >
               <Link to={item.path}>{item.name}</Link>
             </li>
