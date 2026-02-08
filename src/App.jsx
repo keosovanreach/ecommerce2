@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
+
+
 import Navbar from "./Components/Navbar";
 import Banner from "./Components/Banner";
 
@@ -19,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <HashRouter>
       <Navbar cartCount={cartCount}/>
       <Routes>
         <Route path="/" element={<Banner />} />
@@ -28,7 +30,7 @@ function App() {
       
       
       
-    </Router>
+    </HashRouter>
   );
 }
 
