@@ -110,7 +110,7 @@ function Payment() {
               <p className="text-sm capitalize">{paymentMethod}</p>
             </div>
 
-            {/* Pay Button */}
+           
             <a
               href={`https://link.payway.com.kh/aba?id=EB2717207E25&dynamic=true&source_caller=sdk&pid=af_app_invites&link_action=abaqr&shortlink=60oajmze&amount=${total.toLocaleString()}&af_from_app=true&acc=005036627&af_siteid=968860649&userid=EB2717207E25&code=420400&c=abaqr&af_referrer_uid=1741003022679-5382451`}
               target="_blank"

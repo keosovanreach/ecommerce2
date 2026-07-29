@@ -2,7 +2,7 @@ import React from "react";
 import { DiScriptcs } from "react-icons/di";
 import { Link } from "react-router-dom";
 
-function FeaturedPd({ setCart }) {
+function FeaturedPd({ setCart, wishlist, setWishlist }) {
   const products = [
     {
       id: 1,
@@ -93,6 +93,16 @@ function FeaturedPd({ setCart }) {
     });
   };
 
+  const toggleWishlist = (product) => {
+    setWishlist((prevWishlist) => {
+      const exists = prevWishlist.some((item) => item.id === product.id);
+      if (exists) {
+        return prevWishlist.filter((item) => item.id !== product.id);
+      }
+      return [...prevWishlist, product];
+    });
+  };
+
   return (
     <div className="bg-white w-full py-10">
       {/* Title */}
@@ -113,9 +123,16 @@ function FeaturedPd({ setCart }) {
             className="relative rounded-xl shadow-xl overflow-hidden h-[350px]"
           >
             {/* Heart Icon */}
-            <span className="absolute top-3 right-3 bg-blue-500 text-white text-xs px-3 py-1 rounded-full z-10">
+            <button
+              onClick={() => toggleWishlist(product)}
+              className={`absolute top-3 right-3 z-10 rounded-full px-3 py-1 text-xs transition ${
+                wishlist.some((item) => item.id === product.id)
+                  ? "bg-red-500 text-white"
+                  : "bg-blue-500 text-white"
+              }`}
+            >
               <i className="fa-solid fa-heart"></i>
-            </span>
+            </button>
 
             {/* Image */}
             <Link to="/detail" state={{ product }}>

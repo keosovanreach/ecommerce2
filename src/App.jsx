@@ -15,6 +15,7 @@ import Checkout from "./Payments/Checkout";
 import Products from "./Components/Products";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
+import Wishlist from "./Components/Wishlist";
 import Categories from "./Products/Categories";
 import Macbook from "./Products/Macbook";
 import Asus from "./Products/Asus";
@@ -34,6 +35,13 @@ import "aos/dist/aos.css";
 function App() {
   const [cartCount, setCartCount] = useState(0);
   const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("wishlist") || "[]");
+    } catch {
+      return [];
+    }
+  });
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
@@ -45,6 +53,10 @@ function App() {
     setCartCount(totalQty);
   }, [cart]);
 
+  useEffect(() => {
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }, [wishlist]);
+
   return (
     <Router>
       <Routes>
@@ -52,7 +64,7 @@ function App() {
           path="/"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Banner />
               <Menu />
               <FeaturedCate />
@@ -60,6 +72,8 @@ function App() {
                 cart={cart}
                 setCart={setCart}
                 setCartCount={setCartCount}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
               />
               <News />
               <Footer />
@@ -73,11 +87,13 @@ function App() {
           path="/detail"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Detail
                 cart={cart}
                 setCart={setCart}
                 setCartCount={setCartCount}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
               />
             </>
           }
@@ -86,7 +102,7 @@ function App() {
           path="/checkout"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Checkout cart={cart} setCart={setCart} />
               <Footer />
             </>
@@ -96,11 +112,13 @@ function App() {
           path="/products"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Products
                 cart={cart}
                 setCart={setCart}
                 setCartCount={setCartCount}
+                wishlist={wishlist}
+                setWishlist={setWishlist}
               />
               <Footer />
             </>
@@ -110,7 +128,7 @@ function App() {
           path="/about"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <About />
             </>
           }
@@ -119,7 +137,7 @@ function App() {
           path="/contact"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Contact />
               <Footer />
             </>
@@ -129,7 +147,7 @@ function App() {
           path="/categories"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Categories />
               <Footer />
             </>
@@ -139,7 +157,7 @@ function App() {
           path="/macbook"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Macbook
                 cart={cart}
                 setCart={setCart}
@@ -153,7 +171,7 @@ function App() {
           path="/Asus"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Asus cart={cart} setCart={setCart} setCartCount={setCartCount} />
               <Footer />
             </>
@@ -163,7 +181,7 @@ function App() {
           path="/Hp"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Hp cart={cart} setCart={setCart} setCartCount={setCartCount} />
               <Footer />
             </>
@@ -173,7 +191,7 @@ function App() {
           path="/Dell"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Dell cart={cart} setCart={setCart} setCartCount={setCartCount} />
               <Footer />
             </>
@@ -183,7 +201,7 @@ function App() {
           path="/Msi"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Msi cart={cart} setCart={setCart} setCartCount={setCartCount} />
               <Footer />
             </>
@@ -193,7 +211,7 @@ function App() {
           path="/Lenovo"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Lenovo
                 cart={cart}
                 setCart={setCart}
@@ -207,7 +225,7 @@ function App() {
           path="/pc"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Pc cart={cart} setCart={setCart} setCartCount={setCartCount} />
               <Footer />
             </>
@@ -217,7 +235,7 @@ function App() {
           path="/chair"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Chair
                 cart={cart}
                 setCart={setCart}
@@ -231,7 +249,7 @@ function App() {
           path="/Headest"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Headest
                 cart={cart}
                 setCart={setCart}
@@ -245,8 +263,22 @@ function App() {
           path="/Payments"
           element={
             <>
-              <Navbar cartCount={cartCount} />
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
               <Payment />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/wishlist"
+          element={
+            <>
+              <Navbar cartCount={cartCount} wishlistCount={wishlist.length} />
+              <Wishlist
+                wishlist={wishlist}
+                setWishlist={setWishlist}
+                setCart={setCart}
+              />
               <Footer />
             </>
           }

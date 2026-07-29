@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function Detail({ setCart }) {
+function Detail({ setCart, wishlist, setWishlist }) {
   const location = useLocation();
   const navigate = useNavigate();
   const product = location.state?.product;
@@ -38,6 +38,18 @@ function Detail({ setCart }) {
     });
     alert("Added to cart!");
   };
+
+  const handleWishlistToggle = () => {
+    setWishlist((prevWishlist) => {
+      const exists = prevWishlist.some((item) => item.id === product.id);
+      if (exists) {
+        return prevWishlist.filter((item) => item.id !== product.id);
+      }
+      return [...prevWishlist, product];
+    });
+  };
+
+  const isWishlisted = wishlist.some((item) => item.id === product.id);
 
   return (
     <div
@@ -126,15 +138,14 @@ function Detail({ setCart }) {
               </button>
 
               <button
-                className="flex-1 border border-gray-500 py-3 rounded-xl font-semibold hover:bg-red-600 hover:text-white transition cursor-pointer"
-                onClick={() => {
-                  const detail = document.getElementById("detail");
-                  detail.classList.add("bg-pink-300");
-                }
-              }
-             
+                className={`flex-1 border py-3 rounded-xl font-semibold transition cursor-pointer ${
+                  isWishlisted
+                    ? "border-red-500 bg-red-50 text-red-600"
+                    : "border-gray-500 hover:bg-red-600 hover:text-white"
+                }`}
+                onClick={handleWishlistToggle}
               >
-                ♡ Add to Wishlist
+                {isWishlisted ? "♥ Added to Wishlist" : "♡ Add to Wishlist"}
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar({ cartCount }) {
+function Navbar({ cartCount, wishlistCount }) {
   const [open, setOpen] = useState(false);
 
   const menuItems = [
@@ -46,15 +46,23 @@ function Navbar({ cartCount }) {
         </div>
 
         <div className="hidden md:flex flex items-center space-x-4 ">
-          <div className=" relative">
+          <div className="relative">
+            <Link to="/wishlist">
+              <i className="fa-solid fa-heart cursor-pointer active:text-red-500 hover:text-red-500 transition-transform hover:scale-110"></i>
+            </Link>
+            {wishlistCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {wishlistCount}
+              </span>
+            )}
+          </div>
+
+          <div className="relative">
             <Link to="/checkout">
-              <i className="fa-solid fa-cart-shopping cursor-pointer active:text-blue-500  hover:text-blue-500 transition-transform hover:scale-110"></i>
+              <i className="fa-solid fa-cart-shopping cursor-pointer active:text-blue-500 hover:text-blue-500 transition-transform hover:scale-110"></i>
             </Link>
             {cartCount > 0 && (
-              <span
-                className="absolute -top-2 -right-2 bg-red-500 text-white text-xs
-            w-5 h-5 flex items-center justify-center rounded-full"
-              >
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                 {cartCount}
               </span>
             )}
@@ -121,6 +129,16 @@ function Navbar({ cartCount }) {
                 ))}
               </ul>
               <div className="flex items-center space-x-4 mt-6 pt-4 border-t">
+                <div className="relative">
+                  <Link to="/wishlist" onClick={() => setOpen(false)}>
+                    <i className="fa-solid fa-heart cursor-pointer hover:text-red-500 transition-transform hover:scale-110"></i>
+                  </Link>
+                  {wishlistCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                      {wishlistCount}
+                    </span>
+                  )}
+                </div>
                 <div className="relative">
                   <Link to="/checkout" onClick={() => setOpen(false)}>
                     <i className="fa-solid fa-cart-shopping cursor-pointer hover:text-blue-500 transition-transform hover:scale-110"></i>
