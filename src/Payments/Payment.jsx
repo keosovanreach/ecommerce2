@@ -83,7 +83,7 @@ function Payment() {
 
           {/* Payment Details */}
           <div className="space-y-6">
-            {/* Customer Info */}
+           
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="font-semibold mb-3">Customer</h3>
               <p className="text-sm">
@@ -92,7 +92,7 @@ function Payment() {
               <p className="text-sm text-gray-600">{customerInfo.email}</p>
             </div>
 
-            {/* Shipping */}
+            
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h3 className="font-semibold mb-3">Shipping</h3>
               <p className="text-sm">{address.street}</p>

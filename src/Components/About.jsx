@@ -123,8 +123,6 @@ function About() {
           </div>
         </div>
       </div>
-
-     
       <div className="absolute bottom-0 left-0 w-full">
         <svg viewBox="0 0 1440 320" className="w-full">
           <path

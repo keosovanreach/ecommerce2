@@ -548,9 +548,7 @@ function Pc({ setCart }) {
         ))}
       </div>
 
-      <div className="col-span-2 text-center mt-6 bg-blue-800 py-2 rounded w-[200px] mx-auto hover:bg-blue-900 transition cursor-pointer active:bg-blue-900 active:text-white">
-        <p className="text-white text-sm md:text-base">View all products</p>
-      </div>
+     
     </div>
   );
 }
