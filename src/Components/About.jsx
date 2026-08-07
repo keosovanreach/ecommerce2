@@ -77,9 +77,7 @@ function About() {
                 </p>
               </div>
             </div>
-          </div>
-
-          {/* Experience */}
+          </div> 
           <div>
             <h2 className="text-xl font-bold text-red-500 mb-4">Experience</h2>
             <div className="space-y-4 text-gray-600">
@@ -133,6 +131,5 @@ function About() {
       </div>
     </div>
   );
-}
-
+};
 export default About;
