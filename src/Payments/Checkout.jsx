@@ -117,19 +117,19 @@ function Checkout({ cart, setCart }) {
                   {cart.map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-center justify-between border-b pb-4"
+                      className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 border-b pb-4"
                     >
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-4 min-w-0">
                         <img
                           src={item.image}
-                          className="w-20 h-20 object-cover rounded-lg"
+                          className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
                           alt={item.name}
                         />
-                        <div>
-                          <h3 className="font-semibold text-gray-900">
+                        <div className="min-w-0">
+                          <h3 className="font-semibold text-gray-900 truncate">
                             {item.name}
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-gray-500 truncate">
                             {item.category}
                           </p>
                           <p className="text-lg font-bold text-gray-900">
@@ -138,7 +138,7 @@ function Checkout({ cart, setCart }) {
                         </div>
                       </div>
 
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center space-x-4 ml-auto sm:ml-0 flex-shrink-0">
                         <div className="flex items-center border rounded-lg">
                           <button
                             onClick={() => updateQty(item.id, item.qty - 1)}
